@@ -76,11 +76,11 @@ def main():
     
     # Sort columns alphabetically, ignoring case and leading/trailing spaces
     sorted_columns = sorted(df.columns, key=lambda x: x.strip().lower())
-    # If search terms are provided, filter columns
+    # If search terms are provided, filter columns for fuzzy (substring) matches
     if search_terms:
         sorted_columns = [
             col for col in sorted_columns
-            if any(term in col.strip().lower() for term in search_terms)
+            if any(term in col.strip().lower() for term in search_terms if term)
         ]
     small_columns = []  # < 300 unique values
     large_columns = []  # >= 300 unique values
